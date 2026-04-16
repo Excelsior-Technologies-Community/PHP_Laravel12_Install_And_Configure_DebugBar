@@ -544,5 +544,8 @@ DEBUGBAR_ENABLED=false
 
 ** Your PHP_Laravel12_Install_And_Configure_DebugBar Project Completed Successfully**
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> development

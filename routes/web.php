@@ -1,12 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Barryvdh\Debugbar\Facades\Debugbar; // ✅ CORRECT FACADE
+use Barryvdh\Debugbar\Facades\Debugbar;
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
+// Home/dashboard
+Route::get('/', [HomeController::class, 'index']);
 
-    // Send a message to Laravel Debugbar
-    Debugbar::info('Debugbar is working successfully!');
+// Download PDF (allow dots in filename)
+Route::get('/download/{file}', [HomeController::class, 'downloadFile'])
+    ->where('file', '.*');
 
-    return view('welcome');
-});
+// API endpoint
+Route::get('/users', [ApiController::class, 'users']);
