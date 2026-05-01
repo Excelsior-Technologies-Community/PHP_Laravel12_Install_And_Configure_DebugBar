@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Barryvdh\Debugbar\Facades\Debugbar;
-use App\Http\Controllers\ApiController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ApiController;
 
-// Home/dashboard
 Route::get('/', [HomeController::class, 'index']);
 
-// Download PDF (allow dots in filename)
 Route::get('/download/{file}', [HomeController::class, 'downloadFile'])
     ->where('file', '.*');
 
-// API endpoint
+Route::get('/admin/dashboard', [HomeController::class, 'adminIndex']);
+Route::post('/admin/users', [HomeController::class, 'storeUser'])->name('admin.users.store');
+Route::delete('/admin/users/{id}', [HomeController::class, 'deleteUser'])->name('admin.users.delete');
+
 Route::get('/users', [ApiController::class, 'users']);
